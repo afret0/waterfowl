@@ -24,7 +24,7 @@ func GetConfig() *viper.Viper {
 	switch env {
 	case "pro":
 		config.SetConfigName("config")
-	case "sample":
+	case "test":
 		config.SetConfigName("configsample")
 	case "dev":
 		config.SetConfigName("configDev")
