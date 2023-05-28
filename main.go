@@ -161,10 +161,10 @@ bin
 }
 
 func NewService() {
-	svrName := flag.String("new", "", "-new=`sample`")
+	svrName := flag.String("new", "", "-new=sample")
 	flag.Parse()
 	if *svrName == "" {
-		log.Fatal("exec err, please input -new=`sample")
+		log.Fatal("exec err, please input -new=sample")
 		return
 	}
 
