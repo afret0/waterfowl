@@ -28,7 +28,7 @@ func GetRedis() *Redis {
 		return r
 	}
 
-	r := new(Redis)
+	r = new(Redis)
 	r.logger = log.GetLogger()
 	r.ctx, _ = context.WithTimeout(context.Background(), time.Second*10)
 	r.client = r.GetClient()
@@ -44,7 +44,7 @@ func (r *Redis) GetClient() redis.UniversalClient {
 }
 
 func (r *Redis) newClient() redis.UniversalClient {
-	r.logger.Infof("redis is start to connect...")
+	r.logger.Infof("redis is starting to connect...")
 
 	addr := config.GetConfig().GetString("redis.addr")
 	pwd := config.GetConfig().GetString("redis.password")
@@ -65,6 +65,8 @@ func (r *Redis) ping(ctx context.Context, rdb redis.UniversalClient) error {
 	_, err := rdb.Ping(ctx).Result()
 	if err != nil {
 		log.GetLogger().Fatalln(err)
+	}else {
+		log.GetLogger().Infoln("redis ping succeed...")
 	}
 	return err
 }

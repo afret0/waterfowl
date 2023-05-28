@@ -58,7 +58,7 @@ func (m *MongoDB) Ping(ctx context.Context) {
 	if err != nil {
 		m.logger.Fatalf("mongoDB ping err: %s", err.Error())
 	} else {
-		m.logger.Info("mongoDB ping succeed")
+		m.logger.Info("mongoDB ping succeed...")
 	}
 }
 
