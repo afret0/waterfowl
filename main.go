@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bufio"
+	"flag"
 	"fmt"
 	"github.com/afret0/waterfowl/Err"
 	"github.com/afret0/waterfowl/build"
@@ -29,18 +29,6 @@ import (
 	"os"
 	"strings"
 )
-
-func GetServiceName() string {
-	fmt.Println("please input service name...")
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	text := scanner.Text()
-	if text == "" {
-		log.Fatal("service is empty")
-	}
-	fmt.Printf("service name: %s", text)
-	return text
-}
 
 func Write(content, filename string) {
 	file, err := os.Create(filename)
@@ -173,9 +161,16 @@ bin
 }
 
 func NewService() {
-	svr := GetServiceName()
-	//svr := "sample"
+	svrName := flag.String("new-service", "", "--new-service=`sample`")
+	flag.Parse()
+	if *svrName == "" {
+		log.Fatal("exec err, please input -new-service")
+		return
+	}
 
+	fmt.Println("new service: ", *svrName)
+
+	svr := *svrName
 	os.MkdirAll(svr, 0755)
 	Write(main_tem(svr), svr+"/main.go")
 
@@ -249,6 +244,8 @@ func NewService() {
 	Write(build.DockerFileTem(), svr+"/Dockerfile")
 
 	Write(build.MakeFile_tem(svr), svr+"/Makefile")
+
+	fmt.Println("new service succeed...")
 }
 
 func main() {
