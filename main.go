@@ -55,7 +55,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"sample/Infrastructure/middleware"
+	"sample/infrastructure/middleware"
 	"sample/router"
 	"sample/source/cache"
 	"sample/source/config"

@@ -8,8 +8,8 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"sample/Infrastructure/middleware"
-	"sample/Infrastructure/router"
+	"sample/infrastructure/middleware"
+	"sample/infrastructure/router"
 	"sample/handler"
 )
 
