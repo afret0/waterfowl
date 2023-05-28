@@ -7,17 +7,17 @@ func ConfigDevTem() string {
   "service": {
     "port": 1000
   },
-  "mongo": "mongodb://root:WOSHi010@dds-bp1d00511d991bf41229-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1d00511d991bf42154-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-67171023",
+  "mongo": "mongodb://root:****@127.0.0.1:3717/admin?replicaSet=mgset-67171023",
   "userRedis": {
-    "addr": "120.27.235.209:6379",
+    "addr": "127.0.0.1:6379",
     "user": "default",
-    "password": "Qiyiguo2303",
+    "password": "****",
     "DB": 0
   },
   "redis": {
-    "addr": "120.27.235.209:6379",
+    "addr": "127.0.0.1:6379",
     "user": "default",
-    "password": "Qiyiguo2303",
+    "password": "****",
     "DB": 0
   },  
   "rabbitmq": {
@@ -35,21 +35,21 @@ func ConfigTestTem() string {
   "service": {
     "port": 1000
   },
-  "mongo": "mongodb://root:WOSHi010@dds-bp1d00511d991bf41.mongodb.rds.aliyuncs.com:3717,dds-bp1d00511d991bf42.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-67171023&readPreference=secondaryPreferred&MaxPoolSize=200&maxStalenessSeconds=120&heartbeatIntervalMs=20000&maxIdleTimeMs=60000",
+  "mongo": "mongodb://root:****@127.0.0.1:3717?replicaSet=mgset-67171023&readPreference=secondaryPreferred&MaxPoolSize=200&maxStalenessSeconds=120&heartbeatIntervalMs=20000&maxIdleTimeMs=60000",
   "userRedis": {
-    "addr": "120.27.235.209:6379",
+    "addr": "127.0.0.1:6379",
     "user": "default",
-    "password": "Qiyiguo2303",
+    "password": "****",
     "DB": 0
   },
   "redis": {
-    "addr": "120.27.235.209:6379",
+    "addr": "127.0.0.1:6379",
     "user": "default",
-    "password": "Qiyiguo2303",
+    "password": "****",
     "DB": 0
   },
   "rabbitmq": {
-    "addr": "amqp://admin:admin@120.27.235.209:5672"
+    "addr": "amqp://admin:admin@127.0.0.1:5672"
   }
 }
 `
@@ -62,18 +62,18 @@ func ConfigProTem() string {
   "service": {
     "port": 1000
   },
-  "mongo": "mongodb://root:Qiyiguo0425@dds-bp19e7cff0b902e41.mongodb.rds.aliyuncs.com:3717,dds-bp19e7cff0b902e42.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-67861582&readPreference=secondaryPreferred&MaxPoolSize=200&maxStalenessSeconds=120&heartbeatIntervalMs=20000&maxIdleTimeMs=60000",
+  "mongo": "mongodb://root:****@127.0.0.1:3717",
   "rabbitmq": {
-    "addr": "amqp://MjphbXFwLWNuLTlsYjM2eTRmdDAwMjpMVEFJNXQ5VVIyMVJaTXY3dDY4cXVWb2o=:ODlCOEEwQkNFRjIwMDU5QjEzNTMzMUVGMDYyRkIzNDFFQkZBMDREMDoxNjgyNTc1Nzc3MzY0@amqp-cn-9lb36y4ft002.cn-hangzhou.amqp-0.vpc.mq.amqp.aliyuncs.com"
+    "addr": "amqp://127.0.0.1:5672"
   },
   "userRedis": {
-    "addr": "r-bp1630hqxy7sbirzoc.redis.rds.aliyuncs.com:6379",
+    "addr": "127.0.0.1:6379",
     "user": "default",
-    "password": "Qiyiguo2303",
+    "password": "****",
     "DB": 0
   },
   "redis": {
-    "addr": "r-bp1wo8y8i8xdqdxoz7.redis.rds.aliyuncs.com:6379",
+    "addr": "****",
     "user": "default",
     "password": "qpzm2745",
     "DB": 0

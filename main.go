@@ -173,8 +173,8 @@ bin
 }
 
 func NewService() {
-	//svr := GetServiceName()
-	svr := "sample"
+	svr := GetServiceName()
+	//svr := "sample"
 
 	os.MkdirAll(svr, 0755)
 	Write(main_tem(svr), svr+"/main.go")
