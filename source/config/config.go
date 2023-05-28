@@ -25,9 +25,11 @@ func GetConfig() *viper.Viper {
 	case "pro":
 		config.SetConfigName("config")
 	case "test":
-		config.SetConfigName("configsample")
+		config.SetConfigName("configTest")
 	case "dev":
 		config.SetConfigName("configDev")
+	default:
+		log.GetLogger().Fatalf("env: %s not support", env)
 	}
 	err := config.ReadInConfig()
 	if err != nil {
