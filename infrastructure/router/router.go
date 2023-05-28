@@ -111,6 +111,6 @@ func (r *Router) registerRouter() {
 }
 
 `
-	t = strings.ReplaceAll(t, "smaple", svr)
+	t = strings.ReplaceAll(t, "sample", svr)
 	return t
 }
