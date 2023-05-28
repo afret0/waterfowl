@@ -41,7 +41,7 @@ type PingResp struct {
 func (s *Service) Ping(ctx *gin.Context) (interface{}, error) {
 	database.GetMongoDB().Ping(ctx)
 	cache.GetRedis().Ping(ctx)
-	return &PingResp{ping: "pong"}, nil
+	return &PingResp{Ping: "pong"}, nil
 }
 
 

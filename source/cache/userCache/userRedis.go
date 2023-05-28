@@ -69,8 +69,8 @@ func (r *Redis) ping(ctx context.Context, rdb redis.UniversalClient) error {
 	return err
 }
 
-func (r *Redis) Ping() {
-	_ = r.ping(r.ctx, r.client)
+func (r *Redis) Ping(ctx context.Context) {
+	_ = r.ping(ctx, r.client)
 }
 
 func (r *Redis) Close() {

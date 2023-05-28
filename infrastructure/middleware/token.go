@@ -5,8 +5,7 @@ import (
 )
 
 func TokenTem(svr string) string {
-	t := `
-package middleware
+	t := `package middleware
 
 import (
 	"context"

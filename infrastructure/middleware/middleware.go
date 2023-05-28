@@ -3,8 +3,7 @@ package middleware
 import "strings"
 
 func MTem(svr string) string {
-	t := `
-package middleware
+	t := `package middleware
 
 import (
 	"bytes"
