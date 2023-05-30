@@ -16,8 +16,9 @@ var router *Router
 type HandleFuncWrap func(c *gin.Context) (interface{}, error)
 
 type Router struct {
-	rGroup map[string]*Group
-	e      *gin.Engine
+	group      map[string]*Group
+	e          *gin.Engine
+	rootHandle map[string]HandleFuncWrap
 }
 
 type item struct {
@@ -38,8 +39,9 @@ func GetRouter(e *gin.Engine) *Router {
 	}
 
 	router = new(Router)
-	router.rGroup = make(map[string]*Group, 0)
+	router.group = make(map[string]*Group, 0)
 	router.e = e
+	router.rootHandle = make(map[string]HandleFuncWrap, 0)
 
 	return router
 }
@@ -76,18 +78,23 @@ func (r *Router) Use(middleware ...gin.HandlerFunc) {
 	r.rootGroup().Use(middleware...)
 }
 
-func (r *Router) RegisterRouter() {
-	r.registerRouter()
+func (r *Router) RegisterRouter(e *gin.Engine) {
+	for _, g := range r.group {
+		for _, i := range g.router {
+			r.rootHandle[g.path+i.path] = i.handle
+		}
+	}
+	r.registerRouter(e)
 }
 
-func (r *Router) registerRouter() {
-	for _, g := range r.rGroup {
-		group := r.e.RouterGroup.Group(g.path)
+func (r *Router) registerRouter(e *gin.Engine) {
+	for _, g := range r.group {
+		group := e.Group(g.path)
 		group.Use(g.use...)
 		for _, i := range g.router {
-			method := i.method
-			group.Handle(method, i.path, func(ctx *gin.Context) {
-				resp, err := i.handle(ctx)
+			group.Handle(i.method, i.path, func(ctx *gin.Context) {
+				handle := r.rootHandle[ctx.Request.URL.Path]
+				resp, err := handle(ctx)
 				sr := new(serviceResp)
 				sr.Data = resp
 				sr.Code = 1
@@ -109,6 +116,7 @@ func (r *Router) registerRouter() {
 		}
 	}
 }
+
 
 `
 	t = strings.ReplaceAll(t, "sample", svr)

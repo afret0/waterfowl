@@ -51,9 +51,18 @@ func InfrErrTem() string {
 		return err
 	}
 
-	func GetErrs(err error) *Item {
-		return m.errs[err]
+func GetErrs(err error) *Item {
+	if err == nil {
+		return nil
 	}
+	m := getManager()
+	i, ok := m.errs[err.Error()]
+	if ok {
+		return i
+	}
+	return nil
+}
+
 `
 	return t
 
