@@ -69,7 +69,7 @@ func (r *Router) POST(relativePath string, handle HandleFuncWrap) {
 }
 
 func (r *Router) GET(relativePath string, handle HandleFuncWrap) {
-	r.rootGroup().Get(relativePath, handle)
+	r.rootGroup().GET(relativePath, handle)
 }
 
 func (r *Router) Use(middleware ...gin.HandlerFunc) {
