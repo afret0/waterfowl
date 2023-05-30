@@ -31,7 +31,7 @@ func (g *Group) POST(relativePath string, handle HandleFuncWrap) {
 	}
 }
 
-func (g *Group) Get(relativePath string, handle HandleFuncWrap) {
+func (g *Group) GET(relativePath string, handle HandleFuncWrap) {
 	mu.Lock()
 	defer mu.Unlock()
 

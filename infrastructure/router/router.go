@@ -68,7 +68,7 @@ func (r *Router) POST(relativePath string, handle HandleFuncWrap) {
 	r.rootGroup().POST(relativePath, handle)
 }
 
-func (r *Router) Get(relativePath string, handle HandleFuncWrap) {
+func (r *Router) GET(relativePath string, handle HandleFuncWrap) {
 	r.rootGroup().Get(relativePath, handle)
 }
 
