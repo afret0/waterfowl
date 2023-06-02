@@ -27,7 +27,7 @@ func RegisterRouter(e *gin.Engine) {
 	internal := r.Group("/internal")
 	internal.POST("/ping", svr.Ping)
 
-	r.RegisterRouter()
+	r.RegisterRouter(e)
 }
 
 	

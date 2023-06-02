@@ -47,8 +47,8 @@ func GetRouter(e *gin.Engine) *Router {
 }
 
 func (r *Router) Group(relativePath string) *Group {
-	if _, ok := r.rGroup[relativePath]; ok {
-		return r.rGroup[relativePath]
+	if _, ok := r.group[relativePath]; ok {
+		return r.group[relativePath]
 	}
 
 	g := new(Group)
@@ -57,7 +57,7 @@ func (r *Router) Group(relativePath string) *Group {
 
 	mu.Lock()
 	defer mu.Unlock()
-	r.rGroup[relativePath] = g
+	r.group[relativePath] = g
 
 	return g
 }
