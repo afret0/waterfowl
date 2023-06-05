@@ -25,7 +25,7 @@ func GetReq() *Request {
 	if request == nil {
 		request = new(Request)
 		request.client = new(http.Client)
-		request.logger = source.GetLogger()
+		request.logger = log.GetLogger()
 	}
 	return request
 }
