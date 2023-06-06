@@ -6,14 +6,16 @@ import (
 
 func ConsumerTem(svr string) string {
 	t := `
+package rabbitmq
+
 import (
 	"errors"
 	"fmt"
 	"log"
 	"net/http"
-	"sample/sample/config"
-	"sample/sample/rabbitmq/broker"
-	"sample/sample/rabbitmq/help"
+	"sample/source/config"
+	"sample/source/rabbitmq/broker"
+	"sample/source/rabbitmq/help"
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"

@@ -4,6 +4,8 @@ import "strings"
 
 func ProducerTem(svr string) string {
 	t := `
+package rabbitmq
+
 import (
 	"encoding/json"
 	"github.com/sirupsen/logrus"
