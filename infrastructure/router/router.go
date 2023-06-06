@@ -81,7 +81,11 @@ func (r *Router) Use(middleware ...gin.HandlerFunc) {
 func (r *Router) RegisterRouter(e *gin.Engine) {
 	for _, g := range r.group {
 		for _, i := range g.router {
-			r.rootHandle[g.path+i.path] = i.handle
+			if g.path == "/" {
+				r.rootHandle[i.path] = i.handle
+			} else {
+				r.rootHandle[g.path+i.path] = i.handle
+			}
 		}
 	}
 	r.registerRouter(e)
