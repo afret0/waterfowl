@@ -130,7 +130,8 @@ func sample_sh_tem(svr string) string {
 git add ./*
 git commit -am "buid at ` + "`" + "date" + "`" + `"
 git push
-ssh root@dev.kekeyuyin.com "cd /root/sample && git pull && supervisorctl restart sample"
+current_branch=$(git branch --show-current)
+ssh root@dev.kekeyuyin.com "cd /root/sample && git pull &&  git checkout $current_branch &&  supervisorctl restart sample"
 `
 	t = strings.ReplaceAll(t, "sample", svr)
 	return t
