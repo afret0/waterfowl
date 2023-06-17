@@ -8,10 +8,12 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/sirupsen/logrus"
+	"context"
 	"io/ioutil"
 	"net/http"
 	"strings"
+
+	"github.com/sirupsen/logrus"
 )
 
 var request *Request
@@ -30,7 +32,7 @@ func GetReq() *Request {
 	return request
 }
 
-func (r *Request) Post(url string, body interface{}, headers ...http.Header) ([]byte, error) {
+func (r *Request) Post(ctx context.Context, url string, body interface{}, headers ...http.Header) ([]byte, error) {
 	hd := make(http.Header)
 	if len(headers) != 0 {
 		hd = headers[0]
@@ -41,7 +43,7 @@ func (r *Request) Post(url string, body interface{}, headers ...http.Header) ([]
 		return nil, err
 	}
 	payload := bytes.NewReader(payloadJson)
-	req, err := http.NewRequest("POST", url, payload)
+	req, err := http.NewRequestWithContext(ctx, "POST", url, payload)
 	if err != nil {
 		return nil, err
 	}
@@ -75,17 +77,16 @@ func (r *Request) MarshallUrlParams(url string, params map[string]string) string
 	return fmt.Sprintf("%s?%s", url, s)
 }
 
-func (r *Request) Get(url string, headers ...http.Header) ([]byte, error) {
+func (r *Request) Get(ctx context.Context, url string, headers ...http.Header) ([]byte, error) {
 	hd := make(http.Header)
 	if len(headers) != 0 {
 		hd = headers[0]
 	}
-	req, err := http.NewRequest("GET", url, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, err
 	}
 	req.Header = hd
-
 
 	resp, err := r.client.Do(req)
 	if err != nil {
@@ -102,6 +103,7 @@ func (r *Request) Get(url string, headers ...http.Header) ([]byte, error) {
 	}
 	return body, nil
 }
+
 
 
 `
