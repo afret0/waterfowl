@@ -54,6 +54,7 @@ func (r *Request) Post(ctx context.Context, url string, body interface{}, header
 	}
 	if resp.StatusCode != 200 {
 		r.logger.Errorf("statusCode is %v, url: %s", resp.StatusCode, url)
+		return nil, fmt.Errorf("statusCode is %v, url: %s", resp.StatusCode, url)
 	}
 
 	defer func() {
@@ -91,6 +92,10 @@ func (r *Request) Get(ctx context.Context, url string, headers ...http.Header) (
 	resp, err := r.client.Do(req)
 	if err != nil {
 		return nil, err
+	}
+	if resp.StatusCode != 200 {
+		r.logger.Errorf("statusCode is %v, url: %s", resp.StatusCode, url)
+		return nil, fmt.Errorf("statusCode is %v, url: %s", resp.StatusCode, url)
 	}
 
 	defer func() {
