@@ -18,10 +18,11 @@ import (
 type Redis struct {
 	logger *logrus.Logger
 	ctx    context.Context
-	client redis.UniversalClient
+	//client redis.UniversalClient
 }
 
 var r *Redis
+var client *redis.UniversalClient
 
 func GetRedis() *Redis {
 	if r != nil {
@@ -31,16 +32,16 @@ func GetRedis() *Redis {
 	r = new(Redis)
 	r.logger = log.GetLogger()
 	r.ctx, _ = context.WithTimeout(context.Background(), time.Second*10)
-	r.client = r.GetClient()
+	//r.client = r.GetClient()
 	return r
 }
 
 func (r *Redis) GetClient() redis.UniversalClient {
-	if r.client != nil {
-		return r.client
+	if client != nil {
+		return *client
 	}
-	r.client = r.newClient()
-	return r.client
+	client = r.newClient()
+	return *client
 }
 
 func (r *Redis) newClient() redis.UniversalClient {
