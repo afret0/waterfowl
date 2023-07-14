@@ -74,7 +74,7 @@ func LoggerMiddleware() gin.HandlerFunc {
 		uid := c.Request.Header.Get("_uid")
 		log.GetMiddleWareLogger().WithFields(logrus.Fields{
 			"reqTime":  startT.Format("2006-01-02 15:04:05"),
-			"latencyT": latencyT,
+			"latencyT": latencyT.Milliseconds(),
 			"method":   reqMethod,
 			"uri":      reqUri,
 			"clientIP": clientIP,
